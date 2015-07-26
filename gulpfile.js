@@ -12,7 +12,7 @@ var browserSync  = require( 'browser-sync' ),
 // Specify the location of the files we want to watch, and where to dump the results
 var src = {
     css: 'css/',
-    js: 'js/scripts.js',
+    js: ['js/scripts.js'],
     scss: 'css/sass/**/*.scss',
     templates: '**/*.mustache'
 }
@@ -79,7 +79,8 @@ gulp.task( 'js', function() {
         .pipe( uglify( { preserveComments: 'some' } ) )
         .pipe( rename( 'scripts.min.js' ) )
         .pipe( sourcemaps.write( '.' ) )
-        .pipe( gulp.dest( dest.js ) )
+        .pipe( gulp.dest( 'js/' ) )
+        .pipe( gulp.dest( '../public/js/' ) )
         .pipe( browserSync.reload( { stream: true } ) );
 
 } );
