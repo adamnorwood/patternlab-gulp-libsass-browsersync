@@ -39,9 +39,9 @@ gulp.task( 'default', null, function() {
 
     // Create the BrowserSync proxy
     browserSync( {
-        notify: false,
+        notify: true,
         open: false,
-        proxy: 'http://patternlab-adamnorwood.dev'
+        proxy: 'http://example.dev'
     } );
 
     // Watch our files for changes, run tasks when something happens...
