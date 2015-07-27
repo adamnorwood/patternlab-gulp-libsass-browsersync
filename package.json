@@ -1,5 +1,5 @@
 {
-  "name": "patternlab-gulp-sass-browsersync",
+  "name": "patternlab-gulp-libsass-browsersync",
   "version": "1.0.0",
   "description": "A mostly-empty starter source/ for Pattern Lab with Gulp tasks handling Sass, autoprefixing, BrowserSync, and Pattern Lab rebuilding",
   "main": "gulpfile.js",
@@ -15,6 +15,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:texas-law-wordpress-theme/.git"
+    "url": "git@github.com:adamnorwood/patternlab-gulp-libsass-browsersync.git"
   }
 }
