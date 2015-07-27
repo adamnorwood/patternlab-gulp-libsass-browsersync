@@ -9,18 +9,15 @@ var browserSync  = require( 'browser-sync' ),
     sourcemaps   = require( 'gulp-sourcemaps' ),
     uglify       = require( 'gulp-uglify' );
 
-// Specify the location of the files we want to watch, and where to dump the results
-var src = {
+// Specify the locations to dump the compiled CSS and JS
+var sourceDir = {
     css: 'css/',
-    js: ['js/scripts.js'],
-    scss: 'css/sass/**/*.scss',
-    templates: '**/*.mustache'
+    js: 'js/'
 }
 
-var dest = {
+var publicDir = {
     css: '../public/css/',
-    js: '../public/js/',
-    scss: '../public/css/',
+    js: '../public/js/'
 }
 
 /**
@@ -37,9 +34,9 @@ gulp.task( 'default', null, function() {
     } );
 
     // Watch our files for changes, run tasks when something happens...
-    gulp.watch( src.scss, ['sass'] );
-    gulp.watch( src.js, ['js'] );
-    gulp.watch( src.templates, ['patternlab'] );
+    gulp.watch( 'css/sass/**/*.scss', ['sass'] );
+    gulp.watch( ['js/scripts.js'], ['js'] );
+    gulp.watch( '**/*.mustache', ['patternlab'] );
 
 } );
 
@@ -51,7 +48,7 @@ gulp.task( 'default', null, function() {
  */
 gulp.task( 'sass', function() {
 
-    return gulp.src( src.scss )
+    return gulp.src( 'css/sass/**/*.scss' )
         .pipe( sourcemaps.init() )
         .pipe( sass( {
             outputStyle: 'compressed',
@@ -59,8 +56,8 @@ gulp.task( 'sass', function() {
         } ) )
         .pipe( autoprefixer() )
         .pipe( sourcemaps.write( '.' ) )
-        .pipe( gulp.dest( 'css/' ) )
-        .pipe( gulp.dest( '../public/css/' ) )
+        .pipe( gulp.dest( sourceDir.css ) )
+        .pipe( gulp.dest( publicDir.css ) )
         .pipe( browserSync.stream( { match: '**/*.css' } ) );
 
 } );
@@ -73,14 +70,14 @@ gulp.task( 'sass', function() {
  */
 gulp.task( 'js', function() {
 
-    return gulp.src( src.js )
+    return gulp.src( ['js/scripts.js'] )
         .pipe( sourcemaps.init() )
         .pipe( concat( 'scripts.js' ) )
         .pipe( uglify( { preserveComments: 'some' } ) )
         .pipe( rename( 'scripts.min.js' ) )
         .pipe( sourcemaps.write( '.' ) )
-        .pipe( gulp.dest( 'js/' ) )
-        .pipe( gulp.dest( '../public/js/' ) )
+        .pipe( gulp.dest( sourceDir.js ) )
+        .pipe( gulp.dest( publicDir.js ) )
         .pipe( browserSync.reload( { stream: true } ) );
 
 } );
