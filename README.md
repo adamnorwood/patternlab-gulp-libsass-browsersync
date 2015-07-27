@@ -1,6 +1,6 @@
 # Pattern Lab + Gulp + BrowserSync + libsass + SourceMaps
 
-I love [Pattern Lab](patternlab.io/) but I'm also picky about the tools that I work with. I'd rather use Gulp + libsass + BrowserSync than Pattern Lab's Grunt + Compass + LiveReload, so here's a boilerplate, mostly-empty version of a `source/` directory that sets up my preferred tool chain.
+I love [Pattern Lab](http://patternlab.io/) but I'm also picky about the tools that I work with. I'd rather use Gulp + libsass + BrowserSync than Pattern Lab's Grunt + Compass + LiveReload, so here's a boilerplate, mostly-empty version of a `source/` directory that sets up my preferred tool chain.
 
 The `_patterns/` directory has been cleared out for a fresh starting place. I've left the atoms + molecules + organisms + templates + pages pattern structure in place, however, as atomic design is a [pretty good design methodology](http://patternlab.io/about.html).
 
