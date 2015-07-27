@@ -56,6 +56,10 @@ gulp.task( 'default', null, function() {
  * Gulp task: Sass
  * Processes our Sass .scss files into CSS, and also handles creation
  * of CSS sourcemaps for better dev tools debugging
+ *
+ * Note: gulp.dest() is used to drop copies of the generated files in both the
+ * source/ and public/ directories -- otherwise the changes would be lost when
+ * the Pattern Lab generator is run the next time...
  */
 gulp.task( 'sass', function() {
 
@@ -78,6 +82,10 @@ gulp.task( 'sass', function() {
  * Gulp task: JavaScript
  * Concatenates our set of JS files into one scripts.js file, uglifies (compresses)
  * that file, and generates appropriate sourcemaps for better debugging.
+ *
+ * Note: gulp.dest() is used to drop copies of the generated files in both the
+ * source/ and public/ directories -- otherwise the changes would be lost when
+ * the Pattern Lab generator is run the next time...
  */
 gulp.task( 'js', function() {
 
