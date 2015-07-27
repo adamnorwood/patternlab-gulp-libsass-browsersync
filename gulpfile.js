@@ -9,6 +9,10 @@ var browserSync  = require( 'browser-sync' ),
     sourcemaps   = require( 'gulp-sourcemaps' ),
     uglify       = require( 'gulp-uglify' );
 
+// Change this if you're using the patternlab-node fork or something
+// other than the stock PHP Pattern Lab generator...
+var patternLabCommand = 'php ../core/builder.php -g';
+
 // Specify the patterns of files to watch / compile
 var globs = {
     sass:     'css/sass/**/*.scss',
@@ -96,7 +100,7 @@ gulp.task( 'js', function() {
  */
 gulp.task( 'patternlab', function( cb ) {
 
-    exec( 'php ../core/builder.php -g', function ( err, stdout, stderr ) {
+    exec( patternLabCommand, function ( err, stdout, stderr ) {
         console.log( stdout );
         console.log( stderr );
         cb( err );
