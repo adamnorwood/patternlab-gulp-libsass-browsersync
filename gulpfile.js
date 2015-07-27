@@ -9,15 +9,22 @@ var browserSync  = require( 'browser-sync' ),
     sourcemaps   = require( 'gulp-sourcemaps' ),
     uglify       = require( 'gulp-uglify' );
 
+// Specify the patterns of files to watch / compile
+var globs = {
+    sass:     'css/sass/**/*.scss',
+    js:       ['js/scripts.js'],
+    patterns: '**/*.mustache'
+}
+
 // Specify the locations to dump the compiled CSS and JS
 var sourceDir = {
     css: 'css/',
-    js: 'js/'
+    js:  'js/'
 }
 
 var publicDir = {
     css: '../public/css/',
-    js: '../public/js/'
+    js:  '../public/js/'
 }
 
 /**
@@ -34,9 +41,9 @@ gulp.task( 'default', null, function() {
     } );
 
     // Watch our files for changes, run tasks when something happens...
-    gulp.watch( 'css/sass/**/*.scss', ['sass'] );
-    gulp.watch( ['js/scripts.js'], ['js'] );
-    gulp.watch( '**/*.mustache', ['patternlab'] );
+    gulp.watch( globs.sass, ['sass'] );
+    gulp.watch( globs.js, ['js'] );
+    gulp.watch( globs.patterns, ['patternlab'] );
 
 } );
 
@@ -48,7 +55,7 @@ gulp.task( 'default', null, function() {
  */
 gulp.task( 'sass', function() {
 
-    return gulp.src( 'css/sass/**/*.scss' )
+    return gulp.src( globs.sass )
         .pipe( sourcemaps.init() )
         .pipe( sass( {
             outputStyle: 'compressed',
@@ -70,7 +77,7 @@ gulp.task( 'sass', function() {
  */
 gulp.task( 'js', function() {
 
-    return gulp.src( ['js/scripts.js'] )
+    return gulp.src( globs.js )
         .pipe( sourcemaps.init() )
         .pipe( concat( 'scripts.js' ) )
         .pipe( uglify( { preserveComments: 'some' } ) )
